@@ -1,0 +1,15 @@
+<h1>Please Write Comment</h1>
+<p>Post your comment for: <%= link_to "#{@item.name}", "/items/#{@item.id}" %>
+<div>
+<%= form_with(model: [@item, @comment], local: true) do |f| %>
+    <div>
+      <%= f.label :description, "Comment" %><br>
+      <%= f.text_area :description %>
+    </div>
+    <div>
+      <%= f.label :post_date, "Post Date" %><br>
+      <%= f.date_field :post_date %>
+    </div>
+    <%= f.submit %>
+  <% end %>
+</div>

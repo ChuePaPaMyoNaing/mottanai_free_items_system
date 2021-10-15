@@ -1,0 +1,18 @@
+<%= form_with(model: @item, local: true) do |f| %>
+  <span class="image">
+    <%= f.file_field :image %>
+  </span>
+  <div>
+    <%= f.label :name, "Name: " %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :description, "Descirption: " %>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.label :upload_date, "Upload_date: " %>
+    <%= f.date_field :upload_date %>
+  </div>
+  <%= f.submit %>
+<% end %>

@@ -1,0 +1,19 @@
+<h1>Item Detail Page</h1>
+<b><label for="name">Item Name: </label></b><%= @item.name %><br>
+<b><label for="description">Item Description: </label></b><%= @item.description %><br>
+<b><label for="upload_Date">Item Upload_date: </label></b><%= @item.upload_date %><br>
+<%= image_tag(@item.image.url) %><br>
+<% if @item.user_id == current_user.id %>
+  <%= link_to("Update", "/items/#{@item.id}/edit") %>
+  <%= link_to("Delete", "/items/#{@item.id}", method: :delete, data: {confirm: "Are you sure want to delete uploaded item?"}) %>
+<% end %>
+<%= link_to "take", items_path%>
+<br>
+<b><p><label for="comments">Comments</label></p></b>
+<div>
+    <% @item.comments.each do |comment| %>
+      <p><%= comment.description %></p>
+    <% end %>
+</div>
+<br>
+<%= link_to("Add a new Comment", "/items/#{@item.id}/comments/new") %>

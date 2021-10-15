@@ -1,0 +1,28 @@
+<header>
+  <div class="header-logo">
+    <%= link_to("Home Page", "/") %>
+  </div>
+  <ul>
+    <% if user_signed_in? %>
+      <li>
+        <%= link_to("Create Item", "/items/new") %>
+      </li>
+      <li>
+        <%= link_to("All Items", "/items") %>
+      </li>
+      <li>
+        <%= link_to("Log out", "/users/sign_out", method: :delete, data: {confirm: "Are you sure want to log out？"}) %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to("Create New User", "/users/sign_up") %>
+      </li>
+      <li>
+        <%= link_to("All Items", "/items") %>
+      </li>
+      <li>
+        <%= link_to("Login", "/users/sign_in") %>
+      </li>
+    <% end %>
+  </ul>
+</header>
