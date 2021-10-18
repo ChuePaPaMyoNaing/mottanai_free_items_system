@@ -7,7 +7,9 @@
   <%= link_to("Update", "/items/#{@item.id}/edit") %>
   <%= link_to("Delete", "/items/#{@item.id}", method: :delete, data: {confirm: "Are you sure want to delete uploaded item?"}) %>
 <% end %>
-<%= link_to "take", items_path%>
+<% if @item.user_id != current_user.id %>
+  <%= button_to 'Take', {controller: 'items', action: 'index'}, {:method => :get, :data => {:confirm => "Are you sure want to take this item?", id: 'submit-btn'}} %>
+<% end %>
 <br>
 <b><p><label for="comments">Comments</label></p></b>
 <div>
@@ -17,3 +19,8 @@
 </div>
 <br>
 <%= link_to("Add a new Comment", "/items/#{@item.id}/comments/new") %>
+<script>
+  function func1() {
+    document.getElementById("submit-btn").disabled = true;
+  }
+</script>
