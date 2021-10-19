@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  
   def index
     @items = Item.all.where.not(image: nil)
   end
@@ -13,7 +14,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.user_id = current_user.id    
+    @item.user_id = current_user.id
     if @item.save
       redirect_to("/items/#{@item.id}")
     else
@@ -40,8 +41,21 @@ class ItemsController < ApplicationController
     redirect_to("/items")
   end
 
+  def take
+    @item = Item.find(params[:id])
+    @item.update_attribute(:taked, 1)
+    if @item.update(item_params_take)      
+      redirect_to("/items")
+    else
+      render("/items/#{@item.id}")
+    end
+  end
+
   private
+    def item_params_take
+      params.permit(:name, :description, :upload_date, :image, :taked)
+    end
     def item_params
-      params.require(:item).permit(:name, :description, :upload_date, :image)
+      params.require(:item).permit(:name, :description, :upload_date, :image, :taked)
     end
 end
