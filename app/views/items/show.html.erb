@@ -3,7 +3,6 @@
   <b><label for="name">Item Name: </label></b><%= @item.name %><br>
   <b><label for="description">Item Description: </label></b><%= @item.description %><br>
   <b><label for="upload_Date">Item Upload_date: </label></b><%= @item.upload_date %><br>
-  <b><label for="user_name">Uploaded By: </label></b><%= @item.user %><br>
   <%= image_tag(@item.image.url) %><br><br>
   <% if @item.user_id == current_user.id %>
     <% if @item.taked == 0 %>
