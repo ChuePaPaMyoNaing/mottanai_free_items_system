@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   
   def index
-    @items = Item.all.where.not(image: nil)
+    @items = Item.all.where.not(image: nil).paginate(page: params[:page], per_page: 3)
   end
 
   def new

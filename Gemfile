@@ -27,9 +27,19 @@ gem 'jbuilder', '~> 2.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+
+# Gem file for image
 gem 'carrierwave',             '1.2.2'
 gem 'mini_magick',             '4.7.0'
+gem 'fog',                     '1.40.0'
+
+# Gem file for user
 gem 'devise'
+
+# Gem file for pagination
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
