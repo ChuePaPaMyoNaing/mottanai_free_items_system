@@ -1,5 +1,21 @@
-<h1>Item List Page</h1>
-
-<% @items.each do |item| %>
-    <%= link_to image_tag(item.image.url), "/items/#{item.id}" %>
-<% end %>
+<section class="h-100 bg-dark">
+<div class="container py-5 h-100" style="background-color: darkorange;">
+<h1 style = "margin-top: 10px; margin-bottom: 10px; text-align: center;">Item List Page</h1>
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col">
+      <div class="card card-registration my-4">
+          <b-container>          
+            <b-row>
+              <b-col>
+                <% @items.each do |item| %>
+                  <%= link_to image_tag(item.image.url, width: '350px', height: '300px'), "/items/#{item.id}" %>
+                <% end %>
+              </b-col>
+            </b-row>
+            <%= will_paginate @items %>
+          </b-container>
+      </div>
+    </div>
+  </div>
+</div>
+</section>

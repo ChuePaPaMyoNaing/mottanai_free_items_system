@@ -1,28 +1,30 @@
-<h1>Item Detail Page</h1>
-<b><label for="name">Item Name: </label></b><%= @item.name %><br>
-<b><label for="description">Item Description: </label></b><%= @item.description %><br>
-<b><label for="upload_Date">Item Upload_date: </label></b><%= @item.upload_date %><br>
-<b><label for="upload_By">Uploaded By: </label></b><%= @item.user_id %><br>
-<%= image_tag(@item.image.url) %><br>
-<% if @item.user_id == current_user.id %>
-  <% if @item.taked == 0 %>
-    <%= link_to("Update", "/items/#{@item.id}/edit") %>
-    <%= link_to("Delete", "/items/#{@item.id}", method: :delete, data: {confirm: "Are you sure want to delete uploaded item?"}) %>
-  <% end %>
-<% end %>
-<% if @item.user_id != current_user.id %>
-  <% if @item.taked == 0 %>
-    <%= button_to 'Take', {controller: 'items', action: 'take'}, {:method => :post} %>
-  <% else %>
-    <%= button_to "Take", {:controller=>:items}, {:disabled=>true} %>
-  <% end %>
-<% end %>
-<br>
-<b><p><label for="comments">Comments</label></p></b>
-<div>
-    <% @item.comments.each do |comment| %>
-      <p><%= comment.description %></p>
+<div class="container py-5 h-100" style="background-color: antiquewhite;">
+  <h1 style = "margin-top: 25px; text-align: left;">Item Detail Page</h1>
+  <b><label for="name">Item Name: </label></b><%= @item.name %><br>
+  <b><label for="description">Item Description: </label></b><%= @item.description %><br>
+  <b><label for="upload_Date">Item Upload_date: </label></b><%= @item.upload_date %><br>
+  <b><label for="user_name">Uploaded By: </label></b><%= @item.user %><br>
+  <%= image_tag(@item.image.url) %><br><br>
+  <% if @item.user_id == current_user.id %>
+    <% if @item.taked == 0 %>
+      <%= link_to("Update", "/items/#{@item.id}/edit") %>
+      <%= link_to("Delete", "/items/#{@item.id}", method: :delete, data: {confirm: "Are you sure want to delete uploaded item?"}) %>
     <% end %>
+  <% end %>
+  <% if @item.user_id != current_user.id %>
+    <% if @item.taked == 0 %>
+      <%= button_to 'Take', {controller: 'items', action: 'take'}, {:method => :post} %>
+    <% else %>
+      <%= button_to "Take", {:controller=>:items}, {:disabled=>true} %>
+    <% end %>
+  <% end %>
+  <br>
+  <br>
+  <b><p><label for="comments">Comments</label></p></b>
+  <div>
+      <% @item.comments.each do |comment| %>
+        <p><%= comment.description %></p>
+      <% end %>
+  </div>
+  <%= link_to("Add a new Comment", "/items/#{@item.id}/comments/new") %>        
 </div>
-<br>
-<%= link_to("Add a new Comment", "/items/#{@item.id}/comments/new") %>
