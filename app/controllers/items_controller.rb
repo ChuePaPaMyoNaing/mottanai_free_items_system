@@ -8,8 +8,12 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
-  def show
-    @item = Item.find(params[:id])
+  def show    
+    if user_signed_in?
+      @item = Item.find(params[:id])
+    else
+      redirect_to("/users/sign_in")
+    end
   end
 
   def create
