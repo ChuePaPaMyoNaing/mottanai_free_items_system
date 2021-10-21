@@ -4,17 +4,17 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col">
           <div class="card card-registration my-4">          
-            <div class="row g-0" style="background-color: antiquewhite;">            
-            <h3 class="mb-5 text-uppercase">Update Item Form</h3>
-            <% if @item.errors.any? %>
-            <div style="position: fixed;top: 18%;left: 53%;">
-              <ul>
-                <% @item.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
+            <div class="row g-0" style="background-color: antiquewhite;">
+            <h1 style = "margin-top: 10px; text-align: left; text-align: center;">Update Item Page</h1>
+              <div style="margin-left: 52%;">
+                <% if @item.errors.any? %>                
+                  <ul>
+                    <% @item.errors.full_messages.each do |message| %>
+                      <font color="red"><li ><%= message %></li></font>
+                    <% end %>
+                  </ul>                
                 <% end %>
-              </ul>
-            </div>
-          <% end %>
+              </div>
               <div class="col-xl-6 d-none d-xl-block">
               <%= image_tag 'home_image2.jpg', :alt => 'Home Image', style: 'border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;', :class => "img-fluid" %>
               </div>
@@ -32,7 +32,7 @@
                   <div class="row">
                     <div class="col-md-12 mb-4">
                       <div class="form-outline">
-                        <label class="form-label" for="form3Example1m">Item name</label>
+                        <label class="form-label">Item name</label>
                         <%= f.text_field :name, style: 'margin-left: 50px;' %>                        
                       </div>
                     </div>
@@ -40,7 +40,7 @@
                   <div class="row">
                     <div class="col-md-12 mb-4">
                       <div class="form-outline">
-                        <label class="form-label" for="form3Example1m1" style="vertical-align: top;">Description</label>
+                        <label class="form-label" style="vertical-align: top;">Description</label>
                         <%= f.text_area :description, style: 'margin-left: 45px;' %>                        
                       </div>
                     </div>
@@ -48,7 +48,7 @@
                   <div class="row">
                     <div class="col-md-12 mb-4">
                       <div class="form-outline">
-                        <label class="form-label" for="form3Example1m1">Uploaded_date</label>
+                        <label class="form-label">Uploaded_date</label>
                         <%= f.date_field :upload_date, style: 'margin-left: 28px;' %>             
                       </div>
                     </div>
@@ -68,3 +68,11 @@
     </div>
   </section>
 <% end %>
+<script type="text/javascript">
+  $('#item_image').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+</script>

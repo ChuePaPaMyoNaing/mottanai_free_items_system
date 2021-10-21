@@ -27,7 +27,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <% if user_signed_in? %>          
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fa fa-user" aria-hidden="true"> Login User: <%= current_user.name %></i></a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="/items/new"><i class="fas fa-cart-arrow-down"> Create Item</i></a>
             </li>
@@ -35,17 +38,17 @@
               <a class="nav-link" href="/items"><i class="fas fa-list-alt"> All Items</i></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" <%= link_to("Log out", "/users/sign_out", method: :delete, data: {confirm: "Are you sure want to log out？"}) %></a>
+              <a class="nav-link fa fa-sign-out-alt icon"<%= link_to("Log out", "/users/sign_out", method: :delete, data: {confirm: "Are you sure want to log out？"}) %></a>
             </li>
           <% else %>
             <li class="nav-item">
-              <a class="nav-link" href="/users/sign_up" ><i class="fas fa-users"></i> Create New User</a>
+              <a class="nav-link" href="/users/sign_up" ><i class="fas fa-users"> Create New User</i></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/items"><i class="fas fa-list-alt"></i> All Items</a>
+            <a class="nav-link" href="/items"><i class="fas fa-list-alt"> All Items</i></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/users/sign_in"><i class="fas fa-sign-in-alt"></i> Login</a>
+              <a class="nav-link" href="/users/sign_in"><i class="fas fa-sign-in-alt"> Login</i></a>
             </li>
           <% end %>
         </ul>
