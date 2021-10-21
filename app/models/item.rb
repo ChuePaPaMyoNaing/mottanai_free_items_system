@@ -4,7 +4,8 @@ class Item < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :description, length: { maximum: 200 }  
   validates :upload_date, presence: true
-  validate  :image_size
+  validate :image_size
+  validates :image, presence: true
 
   private
     # アップロードされた画像のサイズをバリデーションする
