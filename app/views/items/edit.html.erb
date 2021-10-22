@@ -2,21 +2,21 @@
   <section class="h-100 bg-dark">
     <div class="container py-5 h-100" style="background-color: darkorange;">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col">
+        <div class="col" style="margin-top: 10px">
           <div class="card card-registration my-4">          
             <div class="row g-0" style="background-color: antiquewhite;">
-            <h1 style = "margin-top: 10px; text-align: left; text-align: center;">Update Item Page</h1>
-              <div style="margin-left: 52%;">
+            <h1 style = "text-align: center;">Update Item Page</h1>
+              <div style="text-align: center;">
                 <% if @item.errors.any? %>                
                   <ul>
                     <% @item.errors.full_messages.each do |message| %>
-                      <font color="red"><li ><%= message %></li></font>
+                      <b><font color="red"><%= message %></font></b><br>
                     <% end %>
                   </ul>                
                 <% end %>
               </div>
               <div class="col-xl-6 d-none d-xl-block">
-              <%= image_tag 'home_image2.jpg', :alt => 'Home Image', style: 'border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;', :class => "img-fluid" %>
+              <%= image_tag 'item_image.jpg', style: 'border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; border-radius: 50%;', :class => "img-fluid" %>
               </div>
               <div class="col-xl-6">
                 <div class="card-body p-md-5 text-black">                  
@@ -31,7 +31,7 @@
                   </div>
                   <div class="row">
                     <div class="col-md-12 mb-4">
-                      <div class="form-outline">
+                      <div class="form-outline" style="display: -webkit-box;">
                         <label class="form-label">Item name</label>
                         <%= f.text_field :name, style: 'margin-left: 50px;' %>                        
                       </div>
@@ -39,7 +39,7 @@
                   </div>
                   <div class="row">
                     <div class="col-md-12 mb-4">
-                      <div class="form-outline">
+                      <div class="form-outline" style="display: -webkit-box;">
                         <label class="form-label" style="vertical-align: top;">Description</label>
                         <%= f.text_area :description, style: 'margin-left: 45px;' %>                        
                       </div>

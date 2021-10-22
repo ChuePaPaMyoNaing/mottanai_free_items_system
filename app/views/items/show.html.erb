@@ -1,34 +1,48 @@
-<div class="container py-5 h-100" style="background-color: antiquewhite;">
-  <h1 style = "margin-top: 25px; text-align: left; text-align: center;">Item Detail Page</h1>
-  <div style =  "text-align: center;">
-    <%= image_tag(@item.image.url, width: '350px', height: '290px') %><br><br>
-    <div>      
-      <b><%= @item.name %><br></b> 
-      <b><%= @item.description %><br></b>
-      <b>Uploaded in <%= @item.upload_date %><br><br>
+<section class="h-100 bg-dark">    
+  <div class="container py-5 h-100" style="background-color: darkorange;">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col" style="margin-top: 10px">
+        <div class="card card-registration my-4">          
+          <div class="row g-0" style="background-color: antiquewhite; text-align: center;">
+            <div>
+              <h1>Item Detail Page</h1>
+            </div>
+            <div style = "text-align: center;">
+              <%= image_tag(@item.image.url, width: '350px', height: '290px') %><br><br>
+              <div>      
+                <h3><%= @item.name %><br></h3> 
+                <b><%= @item.description %><br></b>
+                <b>Uploaded in <%= @item.upload_date %><br><br>
+              </div>
+              <% if @item.user_id == current_user.id %>
+                <% if @item.taked == 0 %>
+                  <%= link_to("Update", "/items/#{@item.id}/edit") %>
+                  <%= link_to("Delete", "/items/#{@item.id}", method: :delete, data: {confirm: "Are you sure want to delete uploaded item?"}) %>
+                <% else %>
+                  <div style = "color:red;">This item has already been taken.</div>
+                <% end %>
+              <% end %>
+              <% if @item.user_id != current_user.id %>
+                <% if @item.taked == 0 %>
+                  <%= button_to 'Take', {controller: 'items', action: 'take'}, {:method => :post} %>
+                <% else %>
+                  <%= button_to "Take", {:controller=>:items}, {:disabled=>true} %><br>
+                  <div style = "color:red;">Sorry!!!This item has already been taken.</div>
+                <% end %>
+              <% end %>
+              <br>
+              <br>
+              <b><h4><label for="comments">Comments</label></h4></b>
+              <div>
+                  <% @item.comments.each do |comment| %>
+                    <p><%= comment.description %></p>
+                  <% end %>
+              </div>
+              <%= link_to("Add a new Comment", "/items/#{@item.id}/comments/new") %>        
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <% if @item.user_id == current_user.id %>
-      <% if @item.taked == 0 %>
-        <%= link_to("Update", "/items/#{@item.id}/edit") %>
-        <%= link_to("Delete", "/items/#{@item.id}", method: :delete, data: {confirm: "Are you sure want to delete uploaded item?"}) %>
-      <% end %>
-    <% end %>
-    <% if @item.user_id != current_user.id %>
-      <% if @item.taked == 0 %>
-        <%= button_to 'Take', {controller: 'items', action: 'take'}, {:method => :post} %>
-      <% else %>
-        <%= button_to "Take", {:controller=>:items}, {:disabled=>true} %><br>
-        <div style = "color:red;">Sorry!!!This item has already been taken.</div>
-      <% end %>  
-    <% end %>
-    <br>
-    <br>
-    <b><p><label for="comments">Comments</label></p></b>
-    <div>
-        <% @item.comments.each do |comment| %>
-          <p><%= comment.description %></p>
-        <% end %>
-    </div>
-    <%= link_to("Add a new Comment", "/items/#{@item.id}/comments/new") %>        
   </div>
-</div>
+</section>                  
