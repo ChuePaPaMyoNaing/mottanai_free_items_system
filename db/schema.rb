@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_18_120410) do
+ActiveRecord::Schema.define(version: 2021_10_25_065619) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 2021_10_18_120410) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
     t.integer "taked"
+    t.string "taked_user"
+    t.date "taked_date"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
@@ -48,9 +50,11 @@ ActiveRecord::Schema.define(version: 2021_10_18_120410) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
+    t.integer "{:foreign_key=>true}_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["{:foreign_key=>true}_id"], name: "index_users_on_{:foreign_key=>true}_id"
   end
 
   add_foreign_key "comments", "items"

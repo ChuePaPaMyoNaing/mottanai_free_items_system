@@ -48,7 +48,9 @@ class ItemsController < ApplicationController
   def take
     @item = Item.find(params[:id])
     @item.update_attribute(:taked, 1)
-    if @item.update(item_params_take)      
+    @item.update_attribute(:taked_user, current_user.name)
+    @item.update_attribute(:taked_date, DateTime.now)
+    if @item.update(item_params_take)
       redirect_to("/items")
     else
       render("/items/#{@item.id}")
@@ -57,9 +59,9 @@ class ItemsController < ApplicationController
 
   private
     def item_params_take
-      params.permit(:name, :description, :upload_date, :image, :taked)
+      params.permit(:name, :description, :upload_date, :image, :taked, :taked_user, :taked_date)
     end
     def item_params
-      params.require(:item).permit(:name, :description, :upload_date, :image, :taked)
+      params.require(:item).permit(:name, :description, :upload_date, :image, :taked, :taked_user, :taked_date)
     end
 end

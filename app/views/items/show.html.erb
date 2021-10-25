@@ -18,8 +18,8 @@
                 <% if @item.taked == 0 %>
                   <%= link_to("Update", "/items/#{@item.id}/edit") %>
                   <%= link_to("Delete", "/items/#{@item.id}", method: :delete, data: {confirm: "Are you sure want to delete uploaded item?"}) %>
-                <% else %>
-                  <div style = "color:red;">This item has already been taken.</div>
+                <% else %>                  
+                  <div style = "color:red;">This item has already been taken by <%= @item.taked_user %> at <%= @item.taked_date %> </div>
                 <% end %>
               <% end %>
               <% if @item.user_id != current_user.id %>
