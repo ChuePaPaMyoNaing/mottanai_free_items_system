@@ -17,14 +17,14 @@
                 </div>
                 <div class="field">
                   <b><%= f.label :Description %></b><br />
-                  <%= f.text_area :description, autofocus: true, autocomplete: "name" %>
+                  <%= f.text_area :description, autofocus: true, autocomplete: "name", size: "30x5"%>
                 </div>
                 <div class="field">
                   <b><%= f.label :Post_Date %></b><br />
                   <%= f.date_field :post_date, value: Time.now.strftime("%Y-%m-%d"), min: Date.today %>
                 </div>
                 <div class="actions" style = "margin-top: 10px;">
-                  <%= f.submit %>
+                  <%= f.submit class: 'buttons' %>
                 </div><br> 
             </div>
           </div>

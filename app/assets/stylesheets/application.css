@@ -13,4 +13,18 @@
  *= require_tree .
  *= require_self
  */
+ .buttons {
+  border: 0;
+  border-radius: 5px;
+  background-color:darkorange;
+  font-weight:bold;
+  text-align: center;
+}
+
+.buttons:hover {
+  background-color: #f1dd27ef;
+  box-shadow: 0px 15px 20px rgba(204, 156, 67, 0.932);
+  color: #fff;
+  transform: translateY(-5px);
+}
  

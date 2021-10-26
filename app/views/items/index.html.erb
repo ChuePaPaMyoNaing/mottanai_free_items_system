@@ -11,7 +11,7 @@
               <b-row>
                 <b-col>
                   <% @items.each do |item| %>
-                    <%= link_to image_tag(item.image.url, width: '350px', height: '290px'), "/items/#{item.id}" %>
+                    <%= link_to image_tag(item.image.url, width: '300px', height: '250px'), "/items/#{item.id}" %>
                   <% end %>
                 </b-col>
               </b-row>
