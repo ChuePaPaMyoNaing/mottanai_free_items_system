@@ -24,7 +24,7 @@
               <% end %>
               <% if @item.user_id != current_user.id %>
                 <% if @item.taked == 0 %>
-                  <%= button_to 'Take', {controller: 'items', action: 'take'}, {:method => :post} %>
+                  <%= button_to 'Take', {controller: 'items', action: 'take'}, {:method => :post, class:"buttons"} %>
                 <% else %>
                   <%= button_to "Take", {:controller=>:items}, {:disabled=>true} %><br>
                   <div style = "color:red;">Sorry!!!This item has already been taken.</div>
