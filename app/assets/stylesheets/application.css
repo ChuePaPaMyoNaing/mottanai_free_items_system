@@ -27,4 +27,16 @@
   color: #fff;
   transform: translateY(-5px);
 }
- 
+
+.alert {
+  font-weight: bold;
+  color: red;
+  margin-bottom: 0rem !important;
+  padding: 0rem !important;
+  border: 0px !important;
+}
+
+.notice {
+  font-weight: bold;
+  color: red;
+}

@@ -41,7 +41,7 @@
               <a class="nav-link" href="/items"><i class="fas fa-list-alt"> All Items</i></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fa fa-sign-out-alt icon"<%= link_to("Log out", "/users/sign_out", method: :delete, data: {confirm: "Are you sure want to log out？"}) %></a>
+              <a class="nav-link fas fa-arrow-alt-right"<%= link_to("Log out", "/users/sign_out", method: :delete, data: {confirm: "Are you sure want to log out？"}) %></a>
             </li>
           <% else %>
             <li class="nav-item">
@@ -51,7 +51,7 @@
             <a class="nav-link" href="/items"><i class="fas fa-list-alt"> All Items</i></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/users/sign_in"><i class="fas fa-sign-in-alt"> Login</i></a>
+              <a class="nav-link" href="/users/sign_in"><i class="fas fa-arrow-alt-left"> Login</i></a>
             </li>
           <% end %>
         </ul>
