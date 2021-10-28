@@ -11,7 +11,7 @@
               <%= image_tag(@item.image.url, width: '300px', height: '250px') %><br><br>
               <div>      
                 <h3><%= @item.name %><br></h3> 
-                <b><i class="fas fa-hashtag"></i> <%= @item.description %><br></b>
+                <b><%= safe_join(@item.description.split("\n"),tag(:br)) %><br></b>
                 <b><i class="far fa-calendar-alt"></i> Uploaded in <%= @item.upload_date %><br><br>
               </div>
               <% if @item.user_id == current_user.id %>
