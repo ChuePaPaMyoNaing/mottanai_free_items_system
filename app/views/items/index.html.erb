@@ -7,24 +7,23 @@
             <div>
               <h1>Item List Page</h1>
             </div>
-            <div align = "center">         
-              <% @items.each do |item| %>
-                <table>
-                  <tr>
-                    <td>
-                      <%= link_to image_tag(item.image.url, width: '300px', height: '250px'), "/items/#{item.id}" %>
-                      <% if user_signed_in? %>
-                        <% if item.user_id == current_user.id %>
-                          <div style = "text-align: center; font-weight: bold; color :red;" >You uploaded this item.</div>
-                        <% end %>
-                        <% if item.taked_user == current_user.name %>
-                          <div style = "text-align: center; font-weight: bold; color :red;" >You taked this item.</div>
-                        <% end %>
-                      <% end %>                
-                    </td>
-                  </tr>
-                </table>
-              <% end %>
+            <div class="container">
+              <div class="row">
+                <% @items.each do |item| %> 
+                  <div class="col-md-4"">               
+                    <%= link_to image_tag(item.image.url, width: '300px', height: '250px'), "/items/#{item.id}" %>
+                    <% if user_signed_in? %>
+                      <% if item.user_id == current_user.id %>
+                        <div style = "text-align: center; font-weight: bold; color: red;" ><i class="fas fa-cloud-upload-alt"></i> You uploaded this item.</div>
+                      <% end %>
+                      <% if item.taked_user == current_user.name %>
+                        <div style = "text-align: center; font-weight: bold; color: red;" ><i class="fas fa-cart-arrow-down"></i> You taked this item.</div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
             <div class="pagination justify-content-center" > 
               <%= will_paginate @items, style: 'padding: 10px;' %>
             </div>

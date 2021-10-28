@@ -11,15 +11,15 @@
               <%= image_tag(@item.image.url, width: '300px', height: '250px') %><br><br>
               <div>      
                 <h3><%= @item.name %><br></h3> 
-                <b><%= @item.description %><br></b>
-                <b>Uploaded in <%= @item.upload_date %><br><br>
+                <b><i class="fas fa-hashtag"></i> <%= @item.description %><br></b>
+                <b><i class="far fa-calendar-alt"></i> Uploaded in <%= @item.upload_date %><br><br>
               </div>
               <% if @item.user_id == current_user.id %>
                 <% if @item.taked == 0 %>
                   <%= link_to("Update", "/items/#{@item.id}/edit") %> | 
                   <%= link_to("Delete", "/items/#{@item.id}", method: :delete, data: {confirm: "Are you sure want to delete uploaded item?"}) %>
                 <% else %>                  
-                  <div style = "color:red;">This item has already been taken by <%= @item.taked_user %> at <%= @item.taked_date %> </div>
+                  <div style = "color:red;"><i class="fas fa-exclamation"></i> This item has already been taken by <%= @item.taked_user %> at <%= @item.taked_date %> </div>
                 <% end %>
               <% end %>
               <% if @item.user_id != current_user.id %>
@@ -28,19 +28,19 @@
                 <% else %>
                   <%= button_to "Take", {:controller=>:items}, {:disabled=>true} %><br>
                   <% if @item.taked_user != current_user.name %>
-                    <div style = "color:red;">This item has already been taken.</div>
+                    <div style = "color:red;"><i class="fas fa-exclamation"></i> This item has already been taken.</div>
                   <% end %>
                   <% if @item.taked_user == current_user.name %>
-                    <div style = "color:red;">You taked this item.</div>
+                    <div style = "color:red;"><i class="fas fa-exclamation"></i> You taked this item.</div>
                   <% end %>
                 <% end %>
               <% end %>
               <br>
               <br>
-              <b><h4><label for="comments">Comments</label></h4></b>
+              <b><h4><label for="comments"><i class="fas fa-comments"></i> Comments</label></h4></b>
               <div>
                   <% @item.comments.each do |comment| %>
-                    <p style="white-space: pre-wrap;"><%= comment.description %></p>
+                    <p style="white-space: pre-wrap;"><i class="far fa-comment"></i> <%= comment.description %></p>
                   <% end %>
               </div>
               <%= link_to("Add a new Comment", "/items/#{@item.id}/comments/new") %>        
