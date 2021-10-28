@@ -7,18 +7,28 @@
             <div>
               <h1>Item List Page</h1>
             </div>
-            <b-container>          
-              <b-row>
-                <b-col>
-                  <% @items.each do |item| %>
-                    <%= link_to image_tag(item.image.url, width: '300px', height: '250px'), "/items/#{item.id}" %>
-                  <% end %>
-                </b-col>
-              </b-row>
-              <div class="pagination justify-content-center" > 
-                <%= will_paginate @items, style: 'padding: 10px;' %>
-              </div>
-            </b-container>
+            <div align = "center">         
+              <% @items.each do |item| %>
+                <table>
+                  <tr>
+                    <td>
+                      <%= link_to image_tag(item.image.url, width: '300px', height: '250px'), "/items/#{item.id}" %>
+                      <% if user_signed_in? %>
+                        <% if item.user_id == current_user.id %>
+                          <div style = "text-align: center; font-weight: bold; color :red;" >You uploaded this item.</div>
+                        <% end %>
+                        <% if item.taked_user == current_user.name %>
+                          <div style = "text-align: center; font-weight: bold; color :red;" >You taked this item.</div>
+                        <% end %>
+                      <% end %>                
+                    </td>
+                  </tr>
+                </table>
+              <% end %>
+            <div class="pagination justify-content-center" > 
+              <%= will_paginate @items, style: 'padding: 10px;' %>
+            </div>
+            <div>
           </div>
         </div>
       </div>

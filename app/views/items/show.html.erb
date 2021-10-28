@@ -16,7 +16,7 @@
               </div>
               <% if @item.user_id == current_user.id %>
                 <% if @item.taked == 0 %>
-                  <%= link_to("Update", "/items/#{@item.id}/edit") %>
+                  <%= link_to("Update", "/items/#{@item.id}/edit") %> | 
                   <%= link_to("Delete", "/items/#{@item.id}", method: :delete, data: {confirm: "Are you sure want to delete uploaded item?"}) %>
                 <% else %>                  
                   <div style = "color:red;">This item has already been taken by <%= @item.taked_user %> at <%= @item.taked_date %> </div>
@@ -27,7 +27,12 @@
                   <%= button_to 'Take', {controller: 'items', action: 'take'}, {:method => :post, class:"buttons"} %>
                 <% else %>
                   <%= button_to "Take", {:controller=>:items}, {:disabled=>true} %><br>
-                  <div style = "color:red;">Sorry!!!This item has already been taken.</div>
+                  <% if @item.taked_user != current_user.name %>
+                    <div style = "color:red;">This item has already been taken.</div>
+                  <% end %>
+                  <% if @item.taked_user == current_user.name %>
+                    <div style = "color:red;">You taked this item.</div>
+                  <% end %>
                 <% end %>
               <% end %>
               <br>
@@ -35,7 +40,7 @@
               <b><h4><label for="comments">Comments</label></h4></b>
               <div>
                   <% @item.comments.each do |comment| %>
-                    <p><%= comment.description %></p>
+                    <p style="white-space: pre-wrap;"><%= comment.description %></p>
                   <% end %>
               </div>
               <%= link_to("Add a new Comment", "/items/#{@item.id}/comments/new") %>        
